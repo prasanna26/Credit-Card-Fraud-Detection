@@ -32,6 +32,7 @@ algo = RandomForestClassifier(featuresCol='features', labelCol='Class')
 model = algo.fit(train)
 
 # model.save("/Users/bharathsurianarayanan/Documents/PBDA_project")
+# Saving the built model, to be used in predicting live streams at the consumer
 model.write().overwrite().save("/Users/bharathsurianarayanan/Documents/PBDA_project/test_model")
 
 

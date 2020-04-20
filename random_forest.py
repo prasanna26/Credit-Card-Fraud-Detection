@@ -50,5 +50,3 @@ print("Test: Area Under ROC: " + str(evaluator.evaluate(predictions, {evaluator.
 
 y_true = predictions.select(['Class']).collect()
 y_pred = predictions.select(['prediction']).collect()
-# print(classification_report(y_true, y_pred))
-

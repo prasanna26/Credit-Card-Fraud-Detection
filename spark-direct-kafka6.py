@@ -106,7 +106,7 @@ if __name__ == "__main__":
 	# In[68]:
 
 
-	
+
 
 	start_time = time()
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 	StructField('V28',StringType(),True),
 	StructField('Amount',StringType(),True),
 	# StructField('Class',DoubleType(),True)
-	
+
 ])
 
 
@@ -168,15 +168,15 @@ if __name__ == "__main__":
 	.option("kafka.bootstrap.servers", "localhost:9092") \
 	.option("subscribe", "useless_topic") \
 	.load() #\
-	
+
 
 	parsed=parsed.select(col("key").cast("string"),from_json(col("value").cast("string"), kafkaCreditCardSchema))
-	parsed.printSchema() 
-	
+	parsed.printSchema()
+
 	 # extracting data from kafka topic and building the required schema
 	newFields = parsed \
 		.select("jsontostructs(CAST(value AS STRING)).Time",
-				"jsontostructs(CAST(value AS STRING)).V1",	
+				"jsontostructs(CAST(value AS STRING)).V1",
 				"jsontostructs(CAST(value AS STRING)).V2",
 				"jsontostructs(CAST(value AS STRING)).V3",
 				"jsontostructs(CAST(value AS STRING)).V4",
@@ -208,14 +208,8 @@ if __name__ == "__main__":
 			)
 
 	predictions = model.predictRaw(newFields.rdd.map(lambda x: x.features))
-	
-<<<<<<< HEAD
-	 
-	# write predictions to output sink fraud topic
-=======
 
-	# write predictions to the resultant topic
->>>>>>> v_0.0.1
+
 	read from the topic directly using the console to view the predictions
 	query = predictions \
 			.writeStream \
@@ -227,5 +221,3 @@ if __name__ == "__main__":
 	newFields.printSchema()
 	print('count of dataframe : ',newFields.count())
 	newFields.show()
-	
-

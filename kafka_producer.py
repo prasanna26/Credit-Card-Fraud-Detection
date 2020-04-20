@@ -77,6 +77,7 @@ with open('creditcard.csv') as csv_file:
 		data['V28']=row[28]
 		data['Amount']=row[29]
 		# data['Class']=row[30]
+		# Sending the map to the kafka topic
 		producer.send('useless_topic',value=data)
 		sleep(1)
 

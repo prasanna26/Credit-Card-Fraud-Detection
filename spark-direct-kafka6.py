@@ -209,8 +209,13 @@ if __name__ == "__main__":
 
 	predictions = model.predictRaw(newFields.rdd.map(lambda x: x.features))
 	
+<<<<<<< HEAD
 	 
 	# write predictions to output sink fraud topic
+=======
+
+	# write predictions to the resultant topic
+>>>>>>> v_0.0.1
 	read from the topic directly using the console to view the predictions
 	query = predictions \
 			.writeStream \
